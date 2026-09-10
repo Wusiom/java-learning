@@ -109,3 +109,69 @@
 ### 下一步
 
 - 学习异常处理，以及如何处理非法输入、数组越界和除零问题。
+
+## 2026-09-10（异常、字符串、日期与文件）
+
+### 本次完成
+
+- 使用 `try-catch` 捕获 `NumberFormatException` 和 `ArithmeticException`。
+- 使用 `throw new IllegalArgumentException` 校验分数，并理解异常交给调用者处理。
+- 完成 `Set` 和 `Map` 基础练习及测试。
+- 完成 `String` 比较、常用方法和不可变性练习。
+- 使用 `StringBuilder` 循环拼接文本，并处理最后一个分隔符。
+- 使用 `LocalDate` 和 `ChronoUnit` 计算日期及下次生日。
+- 使用 `Path`、`Files` 完成目录创建、文件写入、读取和存在性判断。
+- 文件读写模块测试通过。
+
+### Review 记录
+
+- `Path.of("data", "message.txt")` 是相对于程序 Working directory 的相对路径。
+- `Files.writeString()` 不会自动创建缺失的父目录，需要先调用 `Files.createDirectories(path.getParent())`。
+- `Files.writeString()` 默认覆盖已有文件内容。
+- 文件操作使用具体的 `IOException` 捕获；包装成 `RuntimeException` 会把异常继续向外抛出。
+
+### 下一步
+
+- 学习方法重载、Java 参数按值传递和基础调试。
+
+## 2026-09-10（方法重载与参数传递）
+
+### 本次完成
+
+- 使用相同方法名、不同参数类型完成方法重载。
+- 理解不能仅通过返回类型区分重载。
+- 验证基本类型参数在方法内修改不会影响外部变量。
+- 验证对象参数可以修改同一个对象的字段。
+- 验证方法内重新给对象参数赋值不会改变调用方引用。
+- 方法重载与参数传递模块测试通过。
+
+### Review 记录
+
+- `add(1, 2)` 调用 `int` 版本，`add(1.0, 3.4)` 调用 `double` 版本。
+- `Student` 参数传递的是引用值的副本，因此可以通过它修改原对象，但不能替换调用方变量指向的对象。
+
+### 下一步
+
+- 学习 Maven 项目结构和 JUnit 单元测试。
+
+## 2026-09-10（Maven 与 JUnit 入门）
+
+### 本次完成
+
+- 排查并解决 IDEA"找不到依赖项 org.junit.jupiter"：依赖声明正确，本地仓库缺 jar，加载 Maven 变更后下载成功。
+- 理解 `pom.xml` 与 `package.json`、`~/.m2/repository` 与 `node_modules` 的类比，`scope=test` 类比 devDependencies。
+- 在 Maven-learn 项目创建无包名的简化版 Student，构造方法与 `setScore` 均调用 `checkScore`，非法分数抛 `IllegalArgumentException`（学习者自己决定构造方法也校验，理解 fail fast）。
+- Review 指出：初版误引用旧项目的 People/Learnable 导致编译不过，已删除；校验方法去掉"分数合格"打印。
+- 编写第一个 JUnit 测试类 StudentTest，三个用例（85 合格、59 不合格、非法分数抛异常）全部通过。
+- Review 指出：一个测试方法只验证一个行为，构造校验与 setScore 校验应拆成两个测试。
+- Maven 与 JUnit 模块测试通过（4 题对 3 题；scope 缺省为 compile、测试框架会进入正式包一题不清楚，已补讲，类比 devDependencies）。
+
+### Review 记录
+
+- 改完 `pom.xml` 需要加载 Maven 变更才会下载依赖，类似改 `package.json` 后要 `npm install`。
+- 边界测试选 59 而不是 30：bug 最容易藏在边界（`>=` 误写为 `>`）。
+- 校验方法成功时沉默、失败时抛异常；测试靠断言验证而非打印。
+
+### 下一步
+
+- 进入 Spring Boot 项目结构；Maven 常用命令（mvn compile/test/package）可在 Spring Boot 前顺带补一课。
