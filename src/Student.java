@@ -20,8 +20,14 @@ public class Student extends People implements Learnable {
         return this.score;
     }
     public void setScore(int score) {
-        if(score >= 0 && score <= 100) {
+            checkScore(score);
             this.score = score;
+    }
+    private void checkScore(int score) {
+        if(score >= 0 && score <= 100) {
+            System.out.println("分数合格");
+        } else {
+            throw new IllegalArgumentException("分数不合法");
         }
     }
 
