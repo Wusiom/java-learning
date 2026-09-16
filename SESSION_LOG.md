@@ -175,3 +175,25 @@
 ### 下一步
 
 - 进入 Spring Boot 项目结构；Maven 常用命令（mvn compile/test/package）可在 Spring Boot 前顺带补一课。
+
+## 2026-09-15（Spring Boot Web CRUD 入门）
+
+### 本次完成
+
+- 创建并启动 Spring Boot Web 项目，理解 starter、内嵌 Tomcat 和 8080 端口。
+- 使用 `@RestController`、`@GetMapping`、`@PostMapping`、`@PutMapping`、`@DeleteMapping` 实现 Student CRUD。
+- 使用 `@RequestParam`、`@PathVariable` 和 `@RequestBody` 完成请求参数绑定。
+- 使用 `@Service` 与构造器注入划分 HTTP 层和业务层，内存 `List<Student>` 暂代数据库。
+- 使用 `ResponseEntity` 返回 201、204、404 和 409；理解 400 与 405 的区别。
+- 创建 Create/Update DTO，并使用 Jakarta Validation 校验姓名与分数。
+
+### Review 记录
+
+- Service 不返回 `ResponseEntity`；业务结果由 Controller 转换为 HTTP 状态。
+- PUT 的资源 ID 来自路径，Update DTO 不包含 ID；真实项目创建 ID 通常由数据库或程序生成。
+- 重复 ID 是业务规则，应在 Service 检查；当前内存练习由 Create DTO 提供 ID。
+- 修改依赖或 Controller 后需重新加载 Maven 并重启应用，运行中的 JVM 不会自动使用新字节码。
+
+### 下一步
+
+- 完成 Spring Boot Web CRUD 模块测试题，再学习 Service 自动化测试和统一异常处理。
